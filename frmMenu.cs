@@ -81,5 +81,135 @@ namespace Ventas_Jairo
             // Le indicamos que corra
             f.Show();
         }
+
+        private void altaClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmAltaClientes f = new FrmAltaClientes();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void actuaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmActualizarClientes f = new FrmActualizarClientes();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void eliminarClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmEliminarCliente f = new FrmEliminarCliente();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void altaDeRepresentanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmAltaRepresentante f = new FrmAltaRepresentante();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void actualizarRepresentanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmActualizarRepresentante f = new FrmActualizarRepresentante();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void eliminarRepresentanteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmEliminarRepresentante f = new FrmEliminarRepresentante();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void altaOficinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmAltaOficina f = new FrmAltaOficina();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void actualizarOficinasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmActualizarOficinas f = new FrmActualizarOficinas();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void eliminarOficinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmEliminarOficina f = new FrmEliminarOficina();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmPagos f = new FrmPagos();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void consultaClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmQueryClientes f = new FrmQueryClientes();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void consultaRepresentanteVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmConsultaRepVentas f = new FrmConsultaRepVentas();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
+
+        private void consultaOficinasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Instanciamos el formulario para usarlo.
+            FrmConsultaOficina f = new FrmConsultaOficina();
+            // le indicamos que corra dentro del ordenador.
+            f.MdiParent = this;
+            // Le indicamos que corra
+            f.Show();
+        }
     }
 }

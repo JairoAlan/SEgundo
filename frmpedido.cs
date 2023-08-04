@@ -33,22 +33,29 @@ namespace Ventas_Jairo
             cmbventas.DataSource = datos.LeerDatos("Select * from [Empresa_jairoACF].[dbo].[Rep_Ventas]");
             cmbventas.DisplayMember = "Nombre";
             cmbventas.ValueMember = "Num_Rep";
-            cargado = true;           
+            cargado = true;
         }
 
-        private void dgdetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgdetalles_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 1)
+            this.dgdetalles.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdetalles_CellEndEdit);
+            
+
+            // Verificar qué columna ha sido editada
+            if (e.ColumnIndex == 1)
             {
-                BaseSQL enlace = new BaseSQL();
                 string valor, valor2;
-                valor = (dgdetalles.CurrentRow.Cells[0].Value.ToString());
-                valor2 = (dgdetalles.CurrentRow.Cells[1].Value.ToString());
+                string descripcion;
                 double precio;
+                double Preciouni = 0;
+                BaseSQL enlace = new BaseSQL();
                 SqlDataReader dato = enlace.ConsultaSQL("SELECT Descripcion,Precio FROM Productos WHERE Id_Fab='" + idfab + "' AND Id_Producto='" + Idproducto + "'");
-                if(dato.Read())
+                if (dato.Read())
                 {
-                    dgdetalles.CurrentRow.Cells[3].Value = dato.GetString(0); // Descripcion en campo 0 y el precio en el campo 1
+                    valor = dgdetalles.CurrentRow.Cells[0].Value.ToString();
+                    valor2 = dgdetalles.CurrentRow.Cells[1].Value.ToString();
+                    descripcion = dato.GetString(0); // descripción en campo 0 y el precio en el campo 1
+                    dgdetalles.CurrentRow.Cells[3].Value = descripcion;
                     precio = dato.GetSqlMoney(1).ToDouble();
                     dgdetalles.CurrentRow.Cells[4].Value = precio;
                 }
@@ -60,23 +67,68 @@ namespace Ventas_Jairo
                     dgdetalles.CurrentRow.Cells[4].Value = 0;
                 }
             }
-            if(e.ColumnIndex == 2)
+            else if (e.ColumnIndex == 2)
             {
-                double precio;
                 try
                 {
                     object cantidad = dgdetalles.CurrentRow.Cells[2].Value;
-                    precio = Double.Parse(dgdetalles.CurrentRow.Cells[4].Value.ToString());
-                    dgdetalles.CurrentRow.Cells[5].Value = precio * Double.Parse(txttotal.ToString());
+                    double precio = Double.Parse(dgdetalles.CurrentRow.Cells[4].Value.ToString());
+                    dgdetalles.CurrentRow.Cells[5].Value = precio * Double.Parse(cantidad.ToString());
                     double resul = dgdetalles.Rows.Cast<DataGridViewRow>().Sum(x => Convert.ToDouble(x.Cells[5].Value));
-                    cantidad = Convert.ToString(resul);
+                    txttotal.Text = Convert.ToString(resul);
                 }
-                catch(Exception x) 
+                catch (Exception x)
                 {
-                    MessageBox.Show(x.Message);
+                    // Manejo de excepción
                 }
             }
         }
+
+
+        private void dgdetalles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //this.dgdetalles.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdetalles_CellEndEdit);
+            //if (e.ColumnIndex == 1)
+            //{
+            //    BaseSQL enlace = new BaseSQL();
+            //    string valor, valor2;
+            //    valor = (dgdetalles.CurrentRow.Cells[0].Value.ToString());
+            //    valor2 = (dgdetalles.CurrentRow.Cells[1].Value.ToString());
+            //    double precio;
+            //    SqlDataReader dato = enlace.ConsultaSQL("SELECT Descripcion,Precio FROM Productos WHERE Id_Fab='" + idfab + "' AND Id_Producto='" + Idproducto + "'");
+            //    if (dato.Read())
+            //    {
+            //        dgdetalles.CurrentRow.Cells[3].Value = dato.GetString(0); // Descripcion en campo 0 y el precio en el campo 1
+            //        precio = dato.GetSqlMoney(1).ToDouble();
+            //        dgdetalles.CurrentRow.Cells[4].Value = precio;
+            //    }
+            //    else
+            //    {
+            //        dgdetalles.CurrentRow.Cells[1].Value = "";
+            //        dgdetalles.CurrentRow.Cells[2].Value = "";
+            //        dgdetalles.CurrentRow.Cells[3].Value = 0;
+            //        dgdetalles.CurrentRow.Cells[4].Value = 0;
+            //    }
+            //}
+            //else if (e.ColumnIndex == 2)
+            //{
+            //    double precio;
+            //    try
+            //    {
+            //        object cantidad = dgdetalles.CurrentRow.Cells[2].Value;
+            //        precio = Double.Parse(dgdetalles.CurrentRow.Cells[4].Value.ToString());
+            //        dgdetalles.CurrentRow.Cells[5].Value = precio * Double.Parse(txttotal.ToString());
+            //        double resul = dgdetalles.Rows.Cast<DataGridViewRow>().Sum(x => Convert.ToDouble(x.Cells[5].Value));
+            //        cantidad = Convert.ToString(resul);
+            //    }
+            //    catch (Exception x)
+            //    {
+            //        MessageBox.Show(x.Message);
+            //    }
+            //}
+        }
+
+        
 
         private void cmbventas_SelectedIndexChanged(object sender, EventArgs e)
         {
